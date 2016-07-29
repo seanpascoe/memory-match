@@ -64,29 +64,32 @@ function resetChoices() {
   choice1 = choice2 = "";
 }
 
-function resetCards(ch1, ch2) {
-  var ch1NumEl = ch1.firstElementChild;
-  var ch2NumEl = ch2.firstElementChild;
-
-  setCardBorder(ch1, ch2);
-  ch1NumEl.style.visibility = "hidden";
-  ch2NumEl.style.visibility = "hidden";
+//loops through arguments and sets border to none and card value element to hidden
+function resetCards() {
+  for (var i = 0; i < arguments.length; i++) {
+    var NumEl = arguments[i].firstElementChild;
+    setCardBorder(arguments[i]);
+    NumEl.style.visibility = "hidden";
+  }
 }
 
 function setCardBorder(ch1, ch2, result) {
-  if (result == "incorrect") {
+  if (result === "incorrect") {
     ch1.style.border = ch2.style.border = "2px solid red";
   } else if (result === "correct") {
     ch1.style.border = ch2.style.border = "2px solid green";
+  //check to see if there is no value for ch2, if so, changes only ch1 border to avoid error
+  } else if (ch2 == null) {
+    ch1.style.border = "none";
   } else {
-    ch1.style.border = ch2.style.border = "none"
+    ch1.style.border = ch2.style.border = "none";
   }
 }
 
 function resetGame() {
+  var card;
   for (var i = 1; i <= cardNumber; i++) {
-    let card = document.getElementById('card' + [i]);
-    console.log(card);
-    //resetCards(card);
+    card = document.getElementById('card' + [i]);
+    resetCards(card);
   }
 }

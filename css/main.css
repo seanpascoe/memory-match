@@ -3,11 +3,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px;
-  height: 200px;
+  margin: 2vh 1vw;
+  height: 30vh;
   border-radius: 5px;
   font-size: 2em;
   cursor: pointer;
+}
+
+.row .gamespace {
+  padding: 0;
 }
 
 .cardNum {
