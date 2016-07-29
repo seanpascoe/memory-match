@@ -1,0 +1,9 @@
+.gamecard {
+  background-color: #ffb74d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  height: 200px;
+  font-size: 2em;
+}
