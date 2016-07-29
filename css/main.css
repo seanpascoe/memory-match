@@ -6,10 +6,11 @@
   margin: 10px;
   height: 200px;
   font-size: 2em;
+  cursor: pointer;
 }
 
 .cardNum {
-  visibility: visible;
+  visibility: hidden;
 }
 
 .showCard {
