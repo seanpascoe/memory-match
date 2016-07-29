@@ -1,21 +1,39 @@
-var cards = [1, 1, 2, 2, 3, 3, 4, 4];
+var cards = createArray(8);
 var choice1;
 var choice2;
 
-function cardSelect(e) {
-  var numEl = e.firstElementChild
+console.log(cards);
+
+function createArray(arrLength) {
+  var array1 = createSubArray(arrLength/2);
+  var array2 = createSubArray(arrLength/2);
+
+  function createSubArray(num) {
+    var arr = [];
+    for(var i = 1; i <= num; i++) {
+      arr.push(i);
+    }
+    return arr;
+  }
+
+  var bigArray = array1.concat(array2);
+
+  return bigArray;
+}
+
+function cardSelect(clickElem) {
+  var numEl = clickElem.firstElementChild
   var cardValue = numEl.innerHTML;
   populateChoice(cardValue);
-
   numEl.style.visibility = "visible";
 }
 
-function populateChoice(card) {
+function populateChoice(cardVal) {
 
   if (!choice1) {
-    choice1 = card;
+    choice1 = cardVal;
   } else {
-    choice2 = card;
+    choice2 = cardVal;
     cardCompare(choice1, choice2);
   }
   console.log(choice1);

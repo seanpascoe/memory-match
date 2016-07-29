@@ -5,6 +5,7 @@
   justify-content: center;
   margin: 10px;
   height: 200px;
+  border-radius: 5px;
   font-size: 2em;
   cursor: pointer;
 }
