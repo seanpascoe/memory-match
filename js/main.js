@@ -1,9 +1,11 @@
 var cardNumber = 8;
 var cards = createArray(cardNumber);
+var shuffledCards = shuffleCards(cards);
+console.log(shuffledCards);
 var choice1;
 var choice2;
+var guessCounter = 0;
 
-console.log(cards);
 
 function createArray(arrLength) {
   var array1 = createSubArray(arrLength/2);
@@ -38,6 +40,7 @@ function cardSelect(clickElem) {
 }
 
 function cardCompare(ch1, ch2) {
+  guessCounter++
   var ch1Val = ch1.firstElementChild.innerHTML;
   var ch2Val = ch2.firstElementChild.innerHTML;
 
@@ -48,15 +51,12 @@ function cardCompare(ch1, ch2) {
     console.log("Cards Equal!")
     setCardBorder(ch1, ch2, "correct");
     resetChoices();
-    //keep cards revealed
-    //reset choices
+    winCheck();
   } else {
     console.log("Cards Not Equal!")
     setCardBorder(ch1, ch2, "incorrect");
     setTimeout(function() {resetCards(ch1, ch2)}, 2000);
     resetChoices();
-    //hide cards again
-    //reset choices to null
   }
 }
 
@@ -92,4 +92,28 @@ function resetGame() {
     card = document.getElementById('card' + [i]);
     resetCards(card);
   }
+}
+
+function winCheck() {
+  var card;
+  for (var i = 1; i <= cardNumber; i++) {
+    card = document.getElementById('card' + [i]);
+    if (card.style.border !== "2px solid green") {
+      return
+    }
+  }
+  console.log('YOU WIN!!!!!!! It took you ' + guessCounter + " guesses");
+}
+
+
+//takes an array of numbers (any length), shuffles the values, and returns a shuffled array
+function shuffleCards(cardArray) {
+  var count = cardArray.length;
+  var cardsShuffled = [];
+
+  while (cardArray.length > 0) {
+    var randomCardIndex = Math.floor((Math.random() * cardArray.length))
+    cardsShuffled.push(cardArray.splice(randomCardIndex, 1)[0])
+  }
+  return cardsShuffled;
 }
