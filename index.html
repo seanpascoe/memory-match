@@ -8,52 +8,60 @@
     <link rel="stylesheet" href="css/main.css" media="screen" title="main" charset="utf-8">
   </head>
   <body>
-    <div class="container">
-      <h1 class="center">Memory Match</h1>
-      <div class="row">
-        <div class="gamespace col s3">
-          <div id="card1" class="gamecard" onclick="cardSelect(this)">
-            <div class="cardNum">2</div>
+    <h1 class="center">Memory Match</h1>
+    <div class="row">
+      <div class="col s12 l8">
+        <!-- The gameboard -->
+        <div id="gamespace" class="row"></div>
+      </div>
+        <!-- The scoreboard column -->
+      <div id="scorecol" class="col s12 l4">
+        <div id="scoreboard" class="col s12 light-blue">
+          <div class="row">
+            <h3>Wins: <span id="score">0</span></h3>
           </div>
-        </div>
-        <div class="gamespace col s3">
-          <div id="card2" class="gamecard" onclick="cardSelect(this)">
-            <div class="cardNum">1</div>
-          </div>
-        </div>
-        <div class="gamespace col s3">
-          <div id="card3" class="gamecard" onclick="cardSelect(this)">
-            <div class="cardNum">4</div>
-          </div>
-        </div>
-        <div class="gamespace col s3">
-          <div id="card4" class="gamecard" onclick="cardSelect(this)">
-            <div class="cardNum">3</div>
-          </div>
-        </div>
-        <div class="gamespace col s3">
-          <div id="card5" class="gamecard" onclick="cardSelect(this)">
-            <div class="cardNum">4</div>
-          </div>
-        </div>
-        <div class="gamespace col s3">
-          <div id="card6" class="gamecard" onclick="cardSelect(this)">
-            <div class="cardNum">3</div>
-          </div>
-        </div>
-        <div class="gamespace col s3">
-          <div id="card7" class="gamecard" onclick="cardSelect(this)">
-            <div class="cardNum showCard">2</div>
-          </div>
-        </div>
-        <div class="gamespace col s3">
-          <div id="card8" class="gamecard" onclick="cardSelect(this)">
-            <div class="cardNum">1</div>
+          <div class="row">
+            <h4>Record: </h4>
+            <ol id="record">
+              <li class="flow-text">Tries: 5&nbsp;&nbsp;&nbsp;Diff: Easy</li>
+              <li>Tries: 5&nbsp;&nbsp;&nbsp;Diff: Easy</li>
+              <li>Tries: 5&nbsp;&nbsp;&nbsp;Diff: Easy</li>
+              <li>Tries: 5&nbsp;&nbsp;&nbsp;Diff: Easy</li>
+              <li>Tries: 5&nbsp;&nbsp;&nbsp;Diff: Easy</li>
+              <li>Tries: 5&nbsp;&nbsp;&nbsp;Diff: Easy</li>
+            </ol>
           </div>
         </div>
       </div>
     </div>
-    <button onclick="resetGame()">Reset</button>
+
+
+    <!-- The overlay -->
+    <div id="myNav" class="overlay">
+
+      <!-- Overlay content -->
+      <div class="overlay-content">
+        <h1 id="startMsg">Welcome to Memory Match!</h1>
+        <h5 id="startResults"></h5>
+        <div class="row">
+          <div class="gray-select center input-field col s12 m6 offset-m3 l4 offset-l4">
+            <select id="difficulty">
+              <option value="" disabled selected>Choose the # of cards</option>
+              <option value="8">Easy - 8</option>
+              <option value="12">Medium - 12</option>
+              <option value="16">Difficult - 16</option>
+              <option value="32">God Mode - 32</option>
+            </select>
+            <label>Choose the difficulty</label>
+          </div>
+        </div>
+        <button class="btn" onclick="startGame()">Start Game</button>
+      </div>
+
+    </div>
+
+    <script type="text/javascript" src="js/jquery-3.1.0.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/materialize.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="js/main.js" charset="utf-8"></script>
   </body>
 </html>

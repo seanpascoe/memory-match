@@ -1,10 +1,14 @@
-var cardNumber = 8;
-var cards = createArray(cardNumber);
-var shuffledCards = shuffleCards(cards);
-console.log(shuffledCards);
+var cardNumber;
 var choice1;
 var choice2;
 var guessCounter = 0;
+var wins = 0;
+
+$(document).ready(function() {
+  $('select').material_select();
+  openMenu();
+});
+
 
 
 function createArray(arrLength) {
@@ -86,14 +90,6 @@ function setCardBorder(ch1, ch2, result) {
   }
 }
 
-function resetGame() {
-  var card;
-  for (var i = 1; i <= cardNumber; i++) {
-    card = document.getElementById('card' + [i]);
-    resetCards(card);
-  }
-}
-
 function winCheck() {
   var card;
   for (var i = 1; i <= cardNumber; i++) {
@@ -102,6 +98,7 @@ function winCheck() {
       return
     }
   }
+  winna();
   console.log('YOU WIN!!!!!!! It took you ' + guessCounter + " guesses");
 }
 
@@ -116,4 +113,72 @@ function shuffleCards(cardArray) {
     cardsShuffled.push(cardArray.splice(randomCardIndex, 1)[0])
   }
   return cardsShuffled;
+}
+
+function setGameSpace(numCards) {
+  var gameSpace = document.getElementById('gamespace');
+  gameSpace.innerHTML = "";
+  for (var i = 1; i <= numCards; i++) {
+    gameSpace.innerHTML += `
+      <div class="gamecardspace col s3">
+        <div id="card${i}" class="gamecard" onclick="cardSelect(this)">
+          <div class="cardNum">${i}</div>
+        </div>
+      </div>
+    `
+  }
+};
+
+function setGameCards(cardArray) {
+  var gameCard;
+  var numEl;
+  for (var i = 1; cardArray.length > 0; i++) {
+    gameCard = document.getElementById('card' + i);
+    numEl = gameCard.firstElementChild
+    numEl.innerHTML = cardArray.pop()
+  }
+}
+
+function resetGame() {
+  var card;
+  for (var i = 1; i <= cardNumber; i++) {
+    card = document.getElementById('card' + [i]);
+    resetCards(card);
+  }
+}
+
+function startGame() {
+  var selectDif = document.getElementById('difficulty');
+  cardNumber = selectDif.options[selectDif.selectedIndex].value;
+  if(cardNumber) {
+    closeMenu();
+    var cards = createArray(cardNumber);
+    var shuffledCards = shuffleCards(cards);
+    guessCounter = 0;
+
+    console.log(shuffledCards);
+    setGameSpace(cardNumber);
+    setGameCards(shuffledCards);
+  }
+}
+
+function winna() {
+  wins++
+  document.getElementById('score').innerHTML = wins;
+  document.getElementById('startMsg').innerHTML = "You're a Winna! Play again?";
+  document.getElementById('startResults').innerHTML = "# of Moves: " + guessCounter;
+  openMenu();
+}
+
+
+
+function openMenu() {
+  document.getElementById("myNav").style.width = "100%";
+  document.getElementById("myNav").style.height = "100%";
+}
+
+
+function closeMenu() {
+  document.getElementById("myNav").style.width = "0%";
+  document.getElementById("myNav").style.height = "0%";
 }
