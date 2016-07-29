@@ -61,8 +61,7 @@ function cardCompare(ch1, ch2) {
 }
 
 function resetChoices() {
-  choice1 = "";
-  choice2 = "";
+  choice1 = choice2 = "";
 }
 
 function resetCards(ch1, ch2) {
@@ -85,5 +84,9 @@ function setCardBorder(ch1, ch2, result) {
 }
 
 function resetGame() {
-
+  for (var i = 1; i <= cardNumber; i++) {
+    let card = document.getElementById('card' + [i]);
+    console.log(card);
+    //resetCards(card);
+  }
 }
