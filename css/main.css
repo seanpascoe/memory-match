@@ -33,9 +33,13 @@
   padding-left: 1rem;
 }
 
-.gray-select,
-.gray-select .caret {
+.gray-select {
   color: #9e9e9e;
+}
+
+.tries {
+  display: inline-block;
+  padding-right: 25px;
 }
 
 

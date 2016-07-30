@@ -167,6 +167,7 @@ function winna() {
   document.getElementById('score').innerHTML = wins;
   document.getElementById('startMsg').innerHTML = "You're a Winna! Play again?";
   document.getElementById('startResults').innerHTML = "# of Moves: " + guessCounter;
+  updateRecord();
   openMenu();
 }
 
@@ -181,4 +182,32 @@ function openMenu() {
 function closeMenu() {
   document.getElementById("myNav").style.width = "0%";
   document.getElementById("myNav").style.height = "0%";
+}
+
+
+function updateRecord() {
+  var record = document.getElementById('record');
+  console.log(cardNumber)
+  function diff() {
+    switch (cardNumber) {
+      case 8:
+        return "Easy";
+        break;
+      case 12:
+        return "Medium";
+        break;
+      case 16:
+        return "Hard";
+        break;
+      case 32:
+        return "God Mode";
+        break;
+    }
+  }
+
+  record.innerHTML += `
+    <li class="flow-text">
+      <span class="tries">Tries: ${guessCounter}</span><span class="diff">Diff: ${diff()}</span>
+    </li>
+  `
 }
