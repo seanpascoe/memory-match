@@ -190,16 +190,16 @@ function updateRecord() {
   console.log(cardNumber)
   function diff() {
     switch (cardNumber) {
-      case 8:
+      case "8":
         return "Easy";
         break;
-      case 12:
+      case "12":
         return "Medium";
         break;
-      case 16:
+      case "16":
         return "Hard";
         break;
-      case 32:
+      case "32":
         return "God Mode";
         break;
     }
